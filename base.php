@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "cyber_magicians";
+$database = "cybermagicians";
 $port = 3306;
 
 session_start();
