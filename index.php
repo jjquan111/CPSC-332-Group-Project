@@ -1,11 +1,5 @@
-<html>
-<h1>hello world!</h1>
 <?php
-$dbhost = 'localhost';
-$dbuser = 'root';
-$dbpass = '';
-$dbname = '332DB'; // Your database name
-
+require_once("base.php");
 function connectToDatabase($host, $user, $pass, $dbname = '')
 {
     $mysqli = new mysqli($host, $user, $pass, $dbname);
@@ -45,19 +39,30 @@ function createTable($mysqli)
 }
 
 // Connect to MySQL server and create or select the database
-$mysqli = connectToDatabase($dbhost, $dbuser, $dbpass);
+
+//$mysqli = connectToDatabase($dbhost, $dbuser, $dbpass);
 
 // Check if the database exists and create if needed
-createDatabase($mysqli, $dbname);
+
+//createDatabase($mysqli, $dbname);
 
 // Create or select the database
-$mysqli = connectToDatabase($dbhost, $dbuser, $dbpass, $dbname);
+
+//$mysqli = connectToDatabase($dbhost, $dbuser, $dbpass, $dbname);
 
 // Create a sample table
-createTable($mysqli);
+
+//createTable($mysqli);
+
+$inject= [
+    "title"=> "Home Page", 
+    "Body"=> ""
+];
+$inject["body"]= "<html>
+<h1>hello world!</h1>
+</html>";
+printMain($inject);
 
 // Close the connection to the database
-$mysqli->close();
+//$mysqli->close();
 ?>
-
-</html>
