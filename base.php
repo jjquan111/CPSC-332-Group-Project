@@ -117,7 +117,7 @@ function printMain($inject) {
               <a class="nav-link" href="/cs332/views/">Required Views</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/cs332/init.php">Reset DB</a>
+              <a class="nav-link" href="/CPSC-332-Group-Project/init.php">Reset DB</a>
             </li>
             <!--
             <li class="nav-item dropdown">
