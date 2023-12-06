@@ -31,7 +31,7 @@ try {
 
   $inject = [
     "body" => "<div class='container'>
-                <a href='/cs332/'>Return Home</a>
+                <a href='" . $GLOBALS['rootpath'] . "/'>Return Home</a>
                 <ul>
                   <li>Create DB and Tables output: " . issetor($res1) . "</li>
                   <li>Create DB and Tables output: " . issetor($res2) . "</li>

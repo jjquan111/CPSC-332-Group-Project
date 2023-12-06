@@ -12,7 +12,7 @@ if(isset($_SESSION['userid'])) {
     }
     $inject['body'] = printUserInfo($userinfo);
 }else {
-    header('Redirect: 2;url=/CPSC-332-Group-Project/auth');
+    header('Redirect: 2;url=' . $GLOBALS['rootpath'] . '/auth');
 }
 printMain($inject);
 $conn->close();

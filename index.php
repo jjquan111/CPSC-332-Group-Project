@@ -58,7 +58,7 @@ function printInitTableLink() {
 
     $body = '<div class="container text-center">
               <h4>DB not initialized yet</h4>
-              <form action="/CPSC-332-Group-Project/init.php" method="POST">
+              <form action="' . $GLOBALS['rootpath'] . '/init.php" method="POST">
                 <button type="submit" class="btn btn-primary">Create DB and populate with data</button>
               </form>
             </div>';

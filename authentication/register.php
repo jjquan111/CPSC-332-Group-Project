@@ -11,7 +11,7 @@ function registerUser() {
         [$error , $userid] = makeSession($_POST['register_email'], $_POST['register_password'], $_POST['register_firstname'], $_POST['register_lastname'], $_POST['register_number'], $_POST['register_inst']);
         if ($userid) {
             $inject['success'] = '<span>Successfully Registered</span>';
-            $inject['redirect'] = '/CPSC-332-GROUP-PROJECT';
+            $inject['redirect'] =  $GLOBALS['rootpath'];
         }
         else {
             $inject['body'] = getRegisterForm($error);
