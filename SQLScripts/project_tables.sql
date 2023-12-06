@@ -112,15 +112,16 @@ CREATE TABLE IF NOT EXISTS university (
 --
 
 CREATE TABLE IF NOT EXISTS user (
-  `userID` int(9) NOT NULL,
+  `userID` int(9) NOT NULL AUTO_INCREMENT,
   `email` varchar(30) NOT NULL,
   `Fname` varchar(30) NOT NULL,
   `Lname` varchar(30) NOT NULL,
   `institution` varchar(30) NOT NULL,
-  `phoneNum` int(9) NOT NULL,
+  `phoneNum` varchar(15) NOT NULL,
   `type` varchar(30) NOT NULL,
   `password` varchar(30) NOT NULL,
-  `timestamp` datetime NOT NULL DEFAULT current_timestamp()
+  `timestamp` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -217,7 +218,6 @@ ALTER TABLE `university`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`userID`),
   ADD UNIQUE KEY `email` (`email`);
 
 --

@@ -5,6 +5,7 @@ require_once('login.php');
 require_once('register.php');
 //establish databse connection
 //$connection = new mysqli(params)
+$conn = new mysqli($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database'], $GLOBALS['port']);
 
 $inject = [
     'title' => 'Log In or Register'
@@ -40,6 +41,7 @@ if(isset($inject['redirect'])) {
 $inject['success'] = issetor($loginform['success']) . issetor($registerform['success']);
 $inject['warning'] = issetor($errror);
 
-printMain($inject)
+printMain($inject);
 
+$conn->close();
 ?>

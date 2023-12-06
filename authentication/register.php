@@ -5,9 +5,10 @@ function registerUser() {
         && !empty($_POST['register_password']) 
         && !empty($_POST['register_firstname'])
         && !empty($_POST['register_lastname'])
-        && !empty($_POST['register_phonenumber'])) {
+        && !empty($_POST['register_number'])
+        && !empty($_POST['register_inst'])) {
 
-        [$error , $userid] = makeUserSession($_POST['register_email'], $_POST['register_password'], $_POST['register_firstname'], $_POST['register_lastname'], $_POST['register_phonenumber']);
+        [$error , $userid] = makeSession($_POST['register_email'], $_POST['register_password'], $_POST['register_firstname'], $_POST['register_lastname'], $_POST['register_number'], $_POST['register_inst']);
         if ($userid) {
             $inject['success'] = '<span>Successfully Registered</span>';
             $inject['redirect'] = '/CPSC-332-GROUP-PROJECT';
@@ -23,8 +24,8 @@ function registerUser() {
 }
 
 function checkEmailInUse($email) {
-    $statement = $GLOBALS['conn']->prepare("SELECT Email FROM user AS u WHERE u.email = ?");
-    $statement->blind_param('s'. $email);
+    $statement = $GLOBALS['conn']->prepare("SELECT email FROM user AS u WHERE u.email = ?");
+    $statement->bind_param('s', $email);
     $statement->execute();
     $res = $statement->get_result();
     $val = $res->fetch_assoc();
@@ -46,8 +47,8 @@ function isPassValid($password) {
 }
 
 function createUser($info) {
-    $statement = $GLOBALS['conn']->prepare("INSERT INTO user (email, password, Fname, Lname, phoneNum VALUES (?, ?, ?, ?, ?)");
-    $statement->blind_param('sssss', $info['email'], $info['password'],$info['fname'],$info['lname'],$info['phonenumber']);
+    $statement = $GLOBALS['conn']->prepare("INSERT INTO user (email, password, Fname, Lname, phoneNum, institution) VALUES (?, ?, ?, ?, ?, ?)");
+    $statement->bind_param('ssssss', $info['email'], $info['password'],$info['fname'],$info['lname'],$info['number'], $info['institution']);
     $statement->execute();
     $userid = $statement->insert_id;
     if(isset($userid)) {
@@ -56,8 +57,8 @@ function createUser($info) {
     return ['Failed to create user', NULL];
 }
 
-function makeSession($email, $password, $fname, $lname, $phonenumber) {
-    if(!checkEmailInUse($email)) {
+function makeSession($email, $password, $fname, $lname, $phonenumber, $inst) {
+    if(checkEmailInUse($email)) {
         return ["Email alreadt registered, <a href='login.php'>Login</a>", NULL];
     }
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -67,14 +68,15 @@ function makeSession($email, $password, $fname, $lname, $phonenumber) {
     if(!$valid) {
         return [$msg, NULL];
     }
-    $phonenumber = filter_var($phonenumber, FILTER_SANATIZE_NUMBER_INT);
+    $phonenumber = filter_var($phonenumber, FILTER_SANITIZE_NUMBER_INT);
 
     $userinfo = [
         'email'=> $email,
         'password' => $password,
         'fname' => $fname,
         'lname' => $lname,
-        'phonenumber' => $phonenumber,
+        'number' => $phonenumber,
+        'institution' => $inst
     ];
 
     [$error,$userid] = createUser($userinfo);
@@ -120,7 +122,15 @@ function getRegisterForm($error = "") {
                     <div class="mb-3">
                         <label for="register_number" class="form-label">Phone Number</label>
                         <input type="tel" class="form-control" id="register_number"
-                            name="register_password"' .
+                            name="register_number"' . 
+                            ifNotEmptyValueAttribute(issetor($_POST['register_number'])) .
+                        'required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="register_number" class="form-label">Institution</label>
+                        <input type="tel" class="form-control" id="register_inst"
+                            name="register_inst"' . 
+                            ifNotEmptyValueAttribute(issetor($_POST['register_inst'])) .
                         'required>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>

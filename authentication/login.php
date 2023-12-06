@@ -20,7 +20,7 @@ function loginUser() {
 function getUser($email,$password) {
     //in actual use case encryption is necessary, because of time limit we won't do
     $statement = $GLOBALS['conn']->prepare("SELECT userID FROM user AS u WHERE u.email = ? AND u.password = ?");
-    $statement->blind_param('ss', $email, $password);
+    $statement->bind_param('ss', $email, $password);
     $statement->execute();
     $res = $statement->get_result();
     $value = $res->fetch_assoc();
@@ -36,7 +36,7 @@ function getLoginForm($error = '') {
         <form action="" method="post">
             <div> 
                 <label for="login_email">Email address</label>
-                <input type="email" id="login_password" name="login_password" aria-describedby="emailHelp" required>
+                <input type="email" id="login_email" name="login_email" aria-describedby="emailHelp" required>
             </div>
             <div> 
                 <label for="login_password">Password</label>
