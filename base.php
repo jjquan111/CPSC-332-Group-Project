@@ -14,7 +14,7 @@ function issetor(&$var, $default = false) {
 function loginlinks() {
   return (isset($_SESSION['userid'])) ? ('
       <li class="nav-item">
-        <a class="nav-link" href="/CPSC-332-Group-Project/authentication/account.php">Account</a>
+        <a class="nav-link" href="/CPSC-332-Group-Project/authentication/profile.php">Account</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/CPSC-332-Group-Project/authentication/logout.php">Log Out</a>
