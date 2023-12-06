@@ -4,6 +4,7 @@ $username = "root";
 $password = "";
 $database = "cybermagicians";
 $port = 3306;
+$rootpath = "/CPSC-332-Group-Project";
 
 session_start();
 
@@ -93,7 +94,7 @@ function printMain($inject) {
     <body class="p-0 m-0">
       <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/cs332">MyJob</a>
+          <a class="navbar-brand" href="' . $GLOBALS['rootpath'] . '">MyJob</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -111,13 +112,13 @@ function printMain($inject) {
           //employeelinks() . 
           //employerlinks() . 
             '<li class="nav-item">
-              <a class="nav-link" href="/cs332/posts/">All Posts</a>
+              <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/posts/">All Posts</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/cs332/views/">Required Views</a>
+              <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/views/">Required Views</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/CPSC-332-Group-Project/init.php">Reset DB</a>
+              <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/init.php">Reset DB</a>
             </li>
             <!--
             <li class="nav-item dropdown">
