@@ -11,6 +11,11 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+DROP DATABASE IF EXISTS cybermagicians;
+CREATE SCHEMA cybermagicians;
+USE cybermagicians;
+
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,7 +32,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `abstract`
 --
 
-CREATE TABLE `abstract` (
+CREATE TABLE IF NOT EXISTS abstract (
   `abstractID` int(9) NOT NULL,
   `accepted` varchar(15) NOT NULL,
   `deadline` datetime NOT NULL,
@@ -46,7 +51,7 @@ CREATE TABLE `abstract` (
 -- Table structure for table `keynote_speaker`
 --
 
-CREATE TABLE `keynote_speaker` (
+CREATE TABLE IF NOT EXISTS keynote_speaker (
   `speakerID` int(9) NOT NULL,
   `speakerName` varchar(30) NOT NULL,
   `time_stamp` datetime NOT NULL DEFAULT current_timestamp()
@@ -58,7 +63,7 @@ CREATE TABLE `keynote_speaker` (
 -- Table structure for table `mentor`
 --
 
-CREATE TABLE `mentor` (
+CREATE TABLE IF NOT EXISTS mentor (
   `time_stamp` datetime NOT NULL DEFAULT current_timestamp(),
   `userID` int(9) NOT NULL,
   `eventID` int(9) NOT NULL
@@ -70,7 +75,7 @@ CREATE TABLE `mentor` (
 -- Table structure for table `presenter`
 --
 
-CREATE TABLE `presenter` (
+CREATE TABLE IF NOT EXISTS presenter (
   `time_stamp` datetime NOT NULL DEFAULT current_timestamp(),
   `userID` int(9) NOT NULL,
   `abstractID` int(9) NOT NULL
@@ -82,7 +87,7 @@ CREATE TABLE `presenter` (
 -- Table structure for table `sponsor`
 --
 
-CREATE TABLE `sponsor` (
+CREATE TABLE IF NOT EXISTS sponsor (
   `sponsorID` int(9) NOT NULL,
   `sponsorName` varchar(255) NOT NULL,
   `time_stamp` datetime NOT NULL DEFAULT current_timestamp()
@@ -94,7 +99,7 @@ CREATE TABLE `sponsor` (
 -- Table structure for table `university`
 --
 
-CREATE TABLE `university` (
+CREATE TABLE IF NOT EXISTS university (
   `uniID` int(9) NOT NULL,
   `uniName` varchar(255) NOT NULL,
   `time_stamp` datetime NOT NULL DEFAULT current_timestamp()
@@ -106,7 +111,7 @@ CREATE TABLE `university` (
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE IF NOT EXISTS user (
   `userID` int(9) NOT NULL,
   `email` varchar(30) NOT NULL,
   `Fname` varchar(30) NOT NULL,
@@ -114,7 +119,8 @@ CREATE TABLE `user` (
   `institution` varchar(30) NOT NULL,
   `phoneNum` int(9) NOT NULL,
   `type` varchar(30) NOT NULL,
-  `timestamp` datetime NOT NULL
+  `password` varchar(30) NOT NULL,
+  `timestamp` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -130,7 +136,7 @@ INSERT INTO `user` (`userID`, `email`, `Fname`, `Lname`, `institution`, `phoneNu
 -- Table structure for table `venue`
 --
 
-CREATE TABLE `venue` (
+CREATE TABLE IF NOT EXISTS venue (
   `venID` int(9) NOT NULL,
   `venueName` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
@@ -143,7 +149,7 @@ CREATE TABLE `venue` (
 -- Table structure for table `_event`
 --
 
-CREATE TABLE `_event` (
+CREATE TABLE IF NOT EXISTS _event (
   `eventID` int(9) NOT NULL,
   `eventName` varchar(30) NOT NULL,
   `published` varchar(30) NOT NULL,
@@ -167,7 +173,7 @@ CREATE TABLE `_event` (
 --
 -- Indexes for table `abstract`
 --
-ALTER TABLE `abstract`
+ALTER TABLE abstract
   ADD PRIMARY KEY (`abstractID`),
   ADD UNIQUE KEY `abstractID` (`abstractID`),
   ADD KEY `mentor` (`mentorID`),

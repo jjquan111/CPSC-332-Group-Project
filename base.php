@@ -1,4 +1,12 @@
 <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "cybermagicians";
+$port = 3306;
+
+session_start();
+
 function issetor(&$var, $default = false) {
     return isset($var) ? $var : $default;
 }
@@ -6,13 +14,13 @@ function issetor(&$var, $default = false) {
 function loginlinks() {
   return (isset($_SESSION['userid'])) ? ('
       <li class="nav-item">
-        <a class="nav-link" href="/cs332/auth/account.php">Account</a>
+        <a class="nav-link" href="/CPSC-332-Group-Project/authentication/account.php">Account</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/cs332/auth/logout.php">Log Out</a>
+        <a class="nav-link" href="/CPSC-332-Group-Project/authentication/logout.php">Log Out</a>
       </li>') :
       ('<li class="nav-item">
-      <a class="nav-link" href="/cs332/auth/">Log In / Register</a>
+      <a class="nav-link" href="/CPSC-332-Group-Project/authentication/">Log In / Register</a>
     </li>');
 }
 
@@ -23,6 +31,38 @@ function ifNotEmptyValueAttribute($value) {
     }
     return "";
 }
+
+
+
+
+// these two functions are used to fill a <select> using the result of a fetch_all from mysqli.
+// the $rows input to printAsOpts is in the form [$error, $kvrows], hence the $rows[1]
+
+function printOneOpt($val, $text, $isactive=FALSE) {
+  $actstr = "";
+  if ($isactive) {
+    $actstr = " selected ";
+  }
+  return '<option' . $actstr . ' value="' . $val . '">' . $text . '</option>';
+}
+
+function printAsOpts($rows, $val_key, $text_key, $default="") {
+    $opts = "";
+    if (isset($rows[0])) {
+        return printOneOpt('', $rows[0]); //error message
+    }
+    else {
+        foreach ($rows[1] as $row) {
+            if (isset($row)) {
+                $opts = $opts . printOneOpt($row[$val_key], $row[$text_key], $row[$val_key]==$default);
+            }
+        }
+        return $opts;
+    }
+}
+
+
+
 
 function printMain($inject) {
 
@@ -42,7 +82,7 @@ function printMain($inject) {
     <body class="p-0 m-0">
       <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/cs332">MyJob</a>
+          <a class="navbar-brand" href="/CPSC-332-Group-Project">MyJob</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -57,14 +97,15 @@ function printMain($inject) {
             </li>
           */
           loginlinks() .
+
             '<li class="nav-item">
-              <a class="nav-link" href="/cs332/posts/">All Posts</a>
+              <a class="nav-link" href="/CPSC-332-Group-Project/events/">Events</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/cs332/views/">Required Views</a>
+              <a class="nav-link" href="/CPSC-332-Group-Project/organizer/">Organizer</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/cs332/init.php">Reset DB</a>
+              <a class="nav-link" href="/CPSC-332-Group-Project/init.php">Reset DB</a>
             </li>
             <!--
             <li class="nav-item dropdown">
