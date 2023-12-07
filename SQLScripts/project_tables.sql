@@ -158,7 +158,7 @@ CREATE TABLE IF NOT EXISTS venue (
 CREATE TABLE IF NOT EXISTS _event (
   `eventID` int(9) NOT NULL AUTO_INCREMENT,
   `eventName` varchar(30) NOT NULL,
-  `published` varchar(30) NOT NULL,
+  `published` boolean NOT NULL,
   `description` text NOT NULL,
   `startTime` datetime NOT NULL DEFAULT current_timestamp(),
   `endTime` datetime NOT NULL DEFAULT current_timestamp(),
