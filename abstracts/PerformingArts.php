@@ -3,11 +3,8 @@ require_once('../base.php');
 
 // Define the subject areas specifically for Performing Arts
 $subjectAreas = [
-    'Performing Art',
-    'Music',
-    'Theatre',
-    'Film Studies',
-    'Dance',
+    'in',
+    'nulla ac',
     // Add other relevant subjects for Performing Arts
 ];
 

@@ -2,8 +2,9 @@
 require_once('../base.php');
 
 $subjectAreas = [
-    'Behavioral or Social Sciences',
-    'Biological or Agricultural Sciences',
+    'Earth or Environmental Science',
+    'gravida',
+    'potenti nullam',
     // ... include other relevant subjects for Oral Talk
 ];
 
