@@ -119,13 +119,13 @@ function printEventForm($error = "") {
                     </div>
                     <div class="mb-3">
                         <label for="startTime" class="form-label">Start Time *</label>
-                        <input type="time" class="form-control" id="startTime" name="startTime"' .
+                        <input type="datetime-local" class="form-control" id="startTime" name="startTime"' .
                             ifNotEmptyValueAttribute(issetor($_POST['startTime'])) .
                         'required>
                     </div>
                     <div class="mb-3">
                         <label for="endTime" class="form-label">End Time *</label>
-                        <input type="time" class="form-control" id="endTime" name="endTime"' .
+                        <input type="datetime-local" class="form-control" id="endTime" name="endTime"' .
                             ifNotEmptyValueAttribute(issetor($_POST['endTime'])) .
                         'required>
                     </div>
