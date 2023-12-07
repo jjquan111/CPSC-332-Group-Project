@@ -43,14 +43,14 @@ if(!isset($_SESSION['userid'])) {
     [$error,$success] = makeEvent($eventName, $published, $description, $startTime, $endTime, $capacity, $eventType, $uniID, $venID, $speakerID, $sponsorID, $organizerID);
     
     if($success) {
-        header('Refresh: 3;url='. $GLOBALS['rootpath'] . '/organizer');
+        header('Refresh: 3;url='. $GLOBALS['rootpath'] . '/events');
         $inject['success']='<span>Successfully created post. Redirecting...</span>';
         $inject['body'] = 'success';
     } else {
         $inject['body'] = printEventForm($error);
     }
 } else {
-    $inject['body'] = printEventForm("wow error");
+    $inject['body'] = printEventForm();
 }
 
 printMain($inject);
