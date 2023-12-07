@@ -83,7 +83,7 @@ function printMain($inject) {
     <body class="p-0 m-0">
       <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="' . $GLOBALS['rootpath'] . '">MyJob</a>
+          <a class="navbar-brand" href="' . $GLOBALS['rootpath'] . '">MyEvents</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -100,13 +100,17 @@ function printMain($inject) {
           loginlinks() .
 
             '<li class="nav-item">
-              <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/posts/">All Posts</a>
+              <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/events/">Events</a>
+
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/views/">Required Views</a>
+              <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/organizer/create.php">Create Event</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/abstracts/index.php">Abstracts</a>
             <li class="nav-item">
               <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/init.php">Reset DB</a>
+            </li
             </li>
             <!--
             <li class="nav-item dropdown">
