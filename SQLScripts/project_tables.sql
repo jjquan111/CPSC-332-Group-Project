@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS keynote_speaker (
   `speakerID` int(9) NOT NULL AUTO_INCREMENT,
   `speakerName` varchar(30) NOT NULL,
   `time_stamp` datetime NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY ('speakerID')
+  PRIMARY KEY (`speakerID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS university (
   `uniID` int(9) NOT NULL AUTO_INCREMENT,
   `uniName` varchar(255) NOT NULL,
   `time_stamp` datetime NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY ('uniID')
+  PRIMARY KEY (`uniID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS _event (
   `speakerID` int(9) NOT NULL,
   `sponsorID` int(9) NOT NULL,
   `organizerID` int(9) NOT NULL,
-  PRIMARY KEY ('eventID')
+  PRIMARY KEY (`eventID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
