@@ -3,10 +3,9 @@ require_once('../base.php');
 
 // Define the subject areas relevant to Poster abstracts
 $subjectAreas = [
-    'Biological or Agricultural Sciences',
-    'Chemistry',
-    'Earth or Environmental Science',
-    'Engineering or Computer Science',
+    'sapien ut',
+    'morbi',
+    'sed vestibulum',
     // Add other relevant subjects here
 ];
 
