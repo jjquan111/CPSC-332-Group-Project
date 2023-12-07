@@ -1,62 +1,73 @@
 <?php
-require_once('../base.php');
+require_once('../base.php'); // Adjust the path as necessary
 
-// Function to get an abstract by its ID
-function getAbstractById($abstractID) {
-    global $conn;  // Assuming $conn is your global database connection variable
+$conn = new mysqli($servername, $username, $password, $database);
 
-    // Check if $conn is not null
-    if ($conn === null) {
-        throw new Exception("Database connection not established.");
-    }
+// Check for a database connection error
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-    // Prepare the SQL query
-    $stmt = $conn->prepare("SELECT a.title, a.abstractText, a.abstractType, a.subject, u.Fname, u.Lname, u.email, u.institution, m.fullName as mentorFullName, m.email as mentorEmail, m.institution as mentorInstitution FROM abstract a JOIN user u ON a.presenterID = u.userID LEFT JOIN mentor m ON a.mentorID = m.userID WHERE a.abstractID = ?");
+// Function to get abstracts by subject
+function getAbstractsBySubject($subject) {
+    global $conn;
 
-    // Bind the abstractID to the query
-    $stmt->bind_param("i", $abstractID);
+    // Prepare the SQL statement
+    $stmt = $conn->prepare("SELECT abstractID, accepted, deadline, abstractType, subject, presenterID, eventID
+                            FROM abstract
+                            WHERE subject = ?");
 
-    // Execute the query
+    // Bind the parameter and execute the statement
+    $stmt->bind_param("s", $subject);
     $stmt->execute();
-
-    // Get the result
     $result = $stmt->get_result();
 
-    // Return the fetched data
-    return $result->fetch_assoc();
+    // Check if any abstracts were found and return them
+    if ($result->num_rows > 0) {
+        return $result->fetch_all(MYSQLI_ASSOC);
+    } else {
+        return []; // No matching abstracts found
+    }
 }
 
-// Example usage
+// Initialize an empty array to hold abstract details
 $abstractDetails = [];
-if (isset($_GET['abstractID'])) {
-    $abstractID = $_GET['abstractID'];  // Get the abstract ID from the URL parameter
 
-    // Fetch the abstract details
-    $abstractDetails = getAbstractById($abstractID);
+// Check if the 'subject' GET parameter is set
+if (isset($_GET['subject'])) {
+    // Fetch the abstracts based on the subject
+    $subject = $_GET['subject'];
+    $abstractDetails = getAbstractsBySubject($subject);
 }
 
+// Prepare the HTML to inject
 $inject = [
-    'title' => 'Abstract Details',
+    'title' => 'Abstract Details by Subject',
     'body' => '<div class="container"><h2>Abstract Details</h2>'
 ];
 
-// Display the abstract details
-if ($abstractDetails) {
-    $inject['body'] .= "<p><strong>Title:</strong> {$abstractDetails['title']}</p>
-                        <p><strong>Abstract:</strong> {$abstractDetails['abstractText']}</p>
-                        <p><strong>Type:</strong> {$abstractDetails['abstractType']}</p>
-                        <p><strong>Subject:</strong> {$abstractDetails['subject']}</p>
-                        <p><strong>Presenter:</strong> {$abstractDetails['Fname']} {$abstractDetails['Lname']}</p>
-                        <p><strong>Email:</strong> {$abstractDetails['email']}</p>
-                        <p><strong>Institution:</strong> {$abstractDetails['institution']}</p>
-                        <p><strong>Mentor:</strong> {$abstractDetails['mentorFullName']}</p>
-                        <p><strong>Mentor Email:</strong> {$abstractDetails['mentorEmail']}</p>
-                        <p><strong>Mentor Institution:</strong> {$abstractDetails['mentorInstitution']}</p>";
+// If abstract details are available, loop through and display them
+if (!empty($abstractDetails)) {
+    foreach ($abstractDetails as $abstract) {
+        $inject['body'] .= "<p><strong>Abstract ID:</strong> " . htmlspecialchars($abstract['abstractID']) . "</p>
+                            <p><strong>Accepted:</strong> " . htmlspecialchars($abstract['accepted']) . "</p>
+                            <p><strong>Deadline:</strong> " . htmlspecialchars($abstract['deadline']) . "</p>
+                            <p><strong>Abstract Type:</strong> " . htmlspecialchars($abstract['abstractType']) . "</p>
+                            <p><strong>Subject:</strong> " . htmlspecialchars($abstract['subject']) . "</p>
+                            <p><strong>Presenter ID:</strong> " . htmlspecialchars($abstract['presenterID']) . "</p>
+                            <p><strong>Event ID:</strong> " . htmlspecialchars($abstract['eventID']) . "</p>";
+    }
 } else {
-    $inject['body'] .= '<p>No details found for the selected abstract.</p>';
+    // If no details were found, display a message
+    $inject['body'] .= '<p>No details found for the selected subject.</p>';
 }
 
+// Close the container div and append to the body
 $inject['body'] .= '</div>';
 
+// Call a function to output the HTML content
 printMain($inject);
+
+// Close the database connection
+$conn->close();
 ?>
