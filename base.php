@@ -2,50 +2,39 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "332DB";
+$database = "cybermagicians";
 $port = 3306;
+$rootpath = "/CPSC-332-Group-Project";
 
 session_start();
 
-  function issetor(&$var, $default = false) {
-      return isset($var) ? $var : $default;
-  }
+function issetor(&$var, $default = false) {
+    return isset($var) ? $var : $default;
+}
 
-//   function loginlinks() {
-//   return (isset($_SESSION['userid'])) ? ('
-//       <li class="nav-item">
-//         <a class="nav-link" href="/cs332/auth/account.php">Account</a>
-//       </li>
-//       <li class="nav-item">
-//         <a class="nav-link" href="/cs332/auth/logout.php">Log Out</a>
-//       </li>') :
-//       ('<li class="nav-item">
-//       <a class="nav-link" href="/cs332/auth/">Log In / Register</a>
-//     </li>');
-//   }
-// function employerlinks() {
-//   return (isset($_SESSION['employerid'])) ? ('
-//       <li class="nav-item">
-//         <a class="nav-link" href="/cs332/employer">Employer</a>
-//       </li>
-//       <li class="nav-item">
-//         <a class="nav-link" href="/cs332/post">Post Job</a>
-//       </li>
-//       </li>') : (
-//       '<li class="nav-item">
-//         <a class="nav-link" href="/cs332/employer/create.php">Create Employer</a>
-//       </li>');
-//   }
+function loginlinks() {
+  return (isset($_SESSION['userid'])) ? ('
+      <li class="nav-item">
+        <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/authentication/profile.php">Account</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/authentication/logout.php">Log Out</a>
+      </li>') :
+      ('<li class="nav-item">
+      <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/authentication/">Log In / Register</a>
+    </li>');
+}
 
-  //used to fill form with what the user submitted in case it fails
+function ifNotEmptyValueAttribute($value) {
+    if (isset($value)) {
+        if ($value == "") {return "";}
+        return ' value="' . htmlspecialchars($value) . '" ';
+    }
+    return "";
+}
 
-// function ifNotEmptyValueAttribute($value) {
-//     if (isset($value)) {
-//         if ($value == "") {return "";}
-//         return ' value="' . htmlspecialchars($value) . '" ';
-//     }
-//     return "";
-// }
+
+
 
 // these two functions are used to fill a <select> using the result of a fetch_all from mysqli.
 // the $rows input to printAsOpts is in the form [$error, $kvrows], hence the $rows[1]
@@ -75,6 +64,7 @@ function printAsOpts($rows, $val_key, $text_key, $default="") {
 
 
 
+
 function printMain($inject) {
 
     echo '
@@ -93,7 +83,7 @@ function printMain($inject) {
     <body class="p-0 m-0">
       <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/CPSC-332-Group-Project/events">MyEvents</a>
+          <a class="navbar-brand" href="' . $GLOBALS['rootpath'] . '">MyEvents</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -107,17 +97,19 @@ function printMain($inject) {
               <a class="nav-link" href="/cs332/auth/login.php">Log In</a>
             </li>
           */
-          //loginlinks() . 
-          //employeelinks() . 
-          //employerlinks() . 
+          loginlinks() .
+
             '<li class="nav-item">
-              <a class="nav-link" href="/CPSC-332-Group-Project/authentication">Login/Register</a>
+              <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/views/">Events</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="/CPSC-332-Group-Project/organizer">Organizer</a>
+              <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/organizer/create.php">Create Event</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="/CPSC-332-Group-Project/abstracts">Abstracts</a>
+              <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/init.php">Abstracts</a>
+            <li class="nav-item">
+              <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/init.php">Reset DB</a>
+            </li
             </li>
             <!--
             <li class="nav-item dropdown">
@@ -152,5 +144,4 @@ function printMain($inject) {
 </html>';
 
 }
-
 ?>
