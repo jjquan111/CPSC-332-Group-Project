@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "cyber_magicians";
+$database = "332DB";
 $port = 3306;
 
 session_start();
@@ -93,7 +93,7 @@ function printMain($inject) {
     <body class="p-0 m-0">
       <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/cs332">MyJob</a>
+          <a class="navbar-brand" href="/CPSC-332-Group-Project/events">MyEvents</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -111,13 +111,13 @@ function printMain($inject) {
           //employeelinks() . 
           //employerlinks() . 
             '<li class="nav-item">
-              <a class="nav-link" href="/cs332/posts/">All Posts</a>
+              <a class="nav-link" href="/CPSC-332-Group-Project/authentication">Login/Register</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/cs332/views/">Required Views</a>
+            <a class="nav-link" href="/CPSC-332-Group-Project/organizer">Organizer</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/cs332/init.php">Reset DB</a>
+            <a class="nav-link" href="/CPSC-332-Group-Project/abstracts">Abstracts</a>
             </li>
             <!--
             <li class="nav-item dropdown">
