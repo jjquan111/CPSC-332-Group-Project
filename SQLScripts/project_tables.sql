@@ -33,7 +33,7 @@ USE cybermagicians;
 --
 
 CREATE TABLE IF NOT EXISTS abstract (
-  `abstractID` int(9) NOT NULL,
+  `abstractID` int(9) NOT NULL AUTO_INCREMENT,
   `accepted` varchar(15) NOT NULL,
   `deadline` datetime NOT NULL,
   `abstractType` varchar(15) NOT NULL,
@@ -42,7 +42,8 @@ CREATE TABLE IF NOT EXISTS abstract (
   `presenterID` int(9) NOT NULL,
   `mentorID` int(9) NOT NULL,
   `eventID` int(9) NOT NULL,
-  `reviewerID` int(9) NOT NULL
+  `reviewerID` int(9) NOT NULL,
+  PRIMARY KEY (`abstractID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -52,9 +53,10 @@ CREATE TABLE IF NOT EXISTS abstract (
 --
 
 CREATE TABLE IF NOT EXISTS keynote_speaker (
-  `speakerID` int(9) NOT NULL,
+  `speakerID` int(9) NOT NULL AUTO_INCREMENT,
   `speakerName` varchar(30) NOT NULL,
-  `time_stamp` datetime NOT NULL DEFAULT current_timestamp()
+  `time_stamp` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY ('speakerID')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -88,9 +90,10 @@ CREATE TABLE IF NOT EXISTS presenter (
 --
 
 CREATE TABLE IF NOT EXISTS sponsor (
-  `sponsorID` int(9) NOT NULL,
+  `sponsorID` int(9) NOT NULL AUTO_INCREMENT,
   `sponsorName` varchar(255) NOT NULL,
-  `time_stamp` datetime NOT NULL DEFAULT current_timestamp()
+  `time_stamp` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`sponsorID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -100,9 +103,10 @@ CREATE TABLE IF NOT EXISTS sponsor (
 --
 
 CREATE TABLE IF NOT EXISTS university (
-  `uniID` int(9) NOT NULL,
+  `uniID` int(9) NOT NULL AUTO_INCREMENT,
   `uniName` varchar(255) NOT NULL,
-  `time_stamp` datetime NOT NULL DEFAULT current_timestamp()
+  `time_stamp` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY ('uniID')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -138,10 +142,11 @@ INSERT INTO `user` (`userID`, `email`, `Fname`, `Lname`, `institution`, `phoneNu
 --
 
 CREATE TABLE IF NOT EXISTS venue (
-  `venID` int(9) NOT NULL,
+  `venID` int(9) NOT NULL AUTO_INCREMENT,
   `venueName` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
-  `time_stamp` datetime NOT NULL DEFAULT current_timestamp()
+  `time_stamp` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`venID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -151,7 +156,7 @@ CREATE TABLE IF NOT EXISTS venue (
 --
 
 CREATE TABLE IF NOT EXISTS _event (
-  `eventID` int(9) NOT NULL,
+  `eventID` int(9) NOT NULL AUTO_INCREMENT,
   `eventName` varchar(30) NOT NULL,
   `published` varchar(30) NOT NULL,
   `description` text NOT NULL,
@@ -164,7 +169,8 @@ CREATE TABLE IF NOT EXISTS _event (
   `venID` int(9) NOT NULL,
   `speakerID` int(9) NOT NULL,
   `sponsorID` int(9) NOT NULL,
-  `organizerID` int(9) NOT NULL
+  `organizerID` int(9) NOT NULL,
+  PRIMARY KEY ('eventID')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -175,7 +181,6 @@ CREATE TABLE IF NOT EXISTS _event (
 -- Indexes for table `abstract`
 --
 ALTER TABLE abstract
-  ADD PRIMARY KEY (`abstractID`),
   ADD UNIQUE KEY `abstractID` (`abstractID`),
   ADD KEY `mentor` (`mentorID`),
   ADD KEY `reviewer` (`reviewerID`),
@@ -183,10 +188,9 @@ ALTER TABLE abstract
   ADD KEY `eve` (`eventID`);
 
 --
--- Indexes for table `keynote_speaker`
+-- 
 --
-ALTER TABLE `keynote_speaker`
-  ADD PRIMARY KEY (`speakerID`);
+
 
 --
 -- Indexes for table `mentor`
@@ -203,16 +207,13 @@ ALTER TABLE `presenter`
   ADD KEY `use` (`userID`);
 
 --
--- Indexes for table `sponsor`
+-- 
 --
-ALTER TABLE `sponsor`
-  ADD PRIMARY KEY (`sponsorID`);
+
 
 --
--- Indexes for table `university`
+-- 
 --
-ALTER TABLE `university`
-  ADD PRIMARY KEY (`uniID`);
 
 --
 -- Indexes for table `user`
@@ -221,16 +222,14 @@ ALTER TABLE `user`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `venue`
+-- 
 --
-ALTER TABLE `venue`
-  ADD PRIMARY KEY (`venID`);
+
 
 --
 -- Indexes for table `_event`
 --
 ALTER TABLE `_event`
-  ADD PRIMARY KEY (`eventID`),
   ADD KEY `university` (`uniID`),
   ADD KEY `venue` (`venID`),
   ADD KEY `keynote` (`speakerID`),
@@ -242,10 +241,9 @@ ALTER TABLE `_event`
 --
 
 --
--- AUTO_INCREMENT for table `abstract`
+-- 
 --
-ALTER TABLE `abstract`
-  MODIFY `abstractID` int(9) NOT NULL AUTO_INCREMENT;
+
 
 --
 -- Constraints for dumped tables
