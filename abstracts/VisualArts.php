@@ -3,10 +3,8 @@ require_once('../base.php');
 
 // Define the subject areas relevant to Visual Arts abstracts
 $subjectAreas = [
-    'Visual Art',
-    'Film Studies',
-    'Interdisciplinary',
-    'Humanities or Letters',
+    'vestibulum',
+    'blandit',
     // Add any other subjects relevant to Visual Arts
 ];
 
