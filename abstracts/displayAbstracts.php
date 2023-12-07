@@ -12,11 +12,13 @@ if ($conn->connect_error) {
 function getAbstractsBySubject($subject) {
     global $conn;
 
-    // Prepare the SQL statement
-    $stmt = $conn->prepare("SELECT abstractID, accepted, deadline, abstractType, subject, presenterID, eventID
-                            FROM abstract
-                            WHERE subject = ?");
-
+    // Prepare the SQL statement to join abstracts with user details of the presenter
+    $stmt = $conn->prepare("SELECT a.abstractID, a.accepted, a.deadline, a.abstractType, a.subject, 
+                                   u.Fname AS presenterFirstName, u.Lname AS presenterLastName, u.email AS presenterEmail, u.institution AS presenterInstitution
+                            FROM abstract a
+                            JOIN user u ON a.presenterID = u.userID
+                            WHERE a.subject = ?");
+    
     // Bind the parameter and execute the statement
     $stmt->bind_param("s", $subject);
     $stmt->execute();
@@ -49,13 +51,14 @@ $inject = [
 // If abstract details are available, loop through and display them
 if (!empty($abstractDetails)) {
     foreach ($abstractDetails as $abstract) {
-        $inject['body'] .= "<p><strong>Abstract ID:</strong> " . htmlspecialchars($abstract['abstractID']) . "</p>
-                            <p><strong>Accepted:</strong> " . htmlspecialchars($abstract['accepted']) . "</p>
-                            <p><strong>Deadline:</strong> " . htmlspecialchars($abstract['deadline']) . "</p>
-                            <p><strong>Abstract Type:</strong> " . htmlspecialchars($abstract['abstractType']) . "</p>
-                            <p><strong>Subject:</strong> " . htmlspecialchars($abstract['subject']) . "</p>
-                            <p><strong>Presenter ID:</strong> " . htmlspecialchars($abstract['presenterID']) . "</p>
-                            <p><strong>Event ID:</strong> " . htmlspecialchars($abstract['eventID']) . "</p>";
+        $inject['body'] .= "<div><strong>Abstract ID:</strong> " . htmlspecialchars($abstract['abstractID']) . "</div>
+                            <div><strong>Accepted:</strong> " . htmlspecialchars($abstract['accepted']) . "</div>
+                            <div><strong>Deadline:</strong> " . htmlspecialchars($abstract['deadline']) . "</div>
+                            <div><strong>Abstract Type:</strong> " . htmlspecialchars($abstract['abstractType']) . "</div>
+                            <div><strong>Subject:</strong> " . htmlspecialchars($abstract['subject']) . "</div>
+                            <div><strong>Presenter:</strong> " . htmlspecialchars($abstract['presenterFirstName']) . " " . htmlspecialchars($abstract['presenterLastName']) . "</div>
+                            <div><strong>Email:</strong> " . htmlspecialchars($abstract['presenterEmail']) . "</div>
+                            <div><strong>Institution:</strong> " . htmlspecialchars($abstract['presenterInstitution']) . "</div>";
     }
 } else {
     // If no details were found, display a message
