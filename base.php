@@ -100,7 +100,7 @@ function printMain($inject) {
           loginlinks() .
 
             '<li class="nav-item">
-              <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/posts/">All Posts</a>
+              <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/events/">Events</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/views/">Required Views</a>
