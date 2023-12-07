@@ -32,3 +32,14 @@ INSERT INTO keynote_speaker(speakerID,speakerName) VALUES (1,'Johnny');
 INSERT INTO _event(eventID,eventName,published,description,startTime,endTime,capacity,eventType,uniID,venID,sponsorID,organizerID,speakerID) VALUES (1,'Veribet','Fully-configurable','Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus.','6/24/2023','7/6/2023',5779,'modular',3,4,4,5,1);
 INSERT INTO _event(eventID,eventName,published,description,startTime,endTime,capacity,eventType,uniID,venID,sponsorID,organizerID,speakerID) VALUES (2,'Flexidy','Compatible','Praesent id massa id nisl venenatis lacinia.','8/15/2023','5/27/2023',716,'Cloned',2,4,3,5,1);
 INSERT INTO _event(eventID,eventName,published,description,startTime,endTime,capacity,eventType,uniID,venID,sponsorID,organizerID,speakerID) VALUES (3,'Stringtough','Mandatory','Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim.','9/3/2023','3/17/2023',9133,'Optional',2,2,1,4,1);
+
+INSERT INTO abstract(abstractID,accepted,deadline,abstractType,subject,presenterID,eventID) VALUES (1,true,'2023-09-23 06:43:00','Expanded','molestie sed',1,3);
+INSERT INTO abstract(abstractID,accepted,deadline,abstractType,subject,presenterID,eventID) VALUES (2,true,'2023-10-29 06:46:08','grid-enabled','sapien ut',10,2);
+INSERT INTO abstract(abstractID,accepted,deadline,abstractType,subject,presenterID,eventID) VALUES (3,true,'2023-09-14 05:52:34','User-centric','in',9,2);
+INSERT INTO abstract(abstractID,accepted,deadline,abstractType,subject,presenterID,eventID) VALUES (4,false,'2023-04-30 09:56:35','Automated','vestibulum',4,2);
+INSERT INTO abstract(abstractID,accepted,deadline,abstractType,subject,presenterID,eventID) VALUES (5,true,'2022-12-28 00:10:37','discrete','gravida',7,2);
+INSERT INTO abstract(abstractID,accepted,deadline,abstractType,subject,presenterID,eventID) VALUES (6,false,'2023-02-24 14:40:41','pricing structure','morbi',9,3);
+INSERT INTO abstract(abstractID,accepted,deadline,abstractType,subject,presenterID,eventID) VALUES (7,false,'2023-04-04 06:33:53','User-centric','nulla ac',3,2);
+INSERT INTO abstract(abstractID,accepted,deadline,abstractType,subject,presenterID,eventID) VALUES (8,false,'2022-12-13 14:33:08','Expanded','blandit',5,3);
+INSERT INTO abstract(abstractID,accepted,deadline,abstractType,subject,presenterID,eventID) VALUES (9,false,'2023-01-30 11:58:17','definition','potenti nullam',7,2);
+INSERT INTO abstract(abstractID,accepted,deadline,abstractType,subject,presenterID,eventID) VALUES (10,false,'2023-05-08 07:29:00','asymmetric','sed vestibulum',1,3);
