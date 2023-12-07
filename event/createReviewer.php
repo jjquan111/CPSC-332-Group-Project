@@ -1,5 +1,6 @@
 <?php
 require_once("../base.php");
+require_once("getevent.php");
 $conn = new mysqli($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database'], $GLOBALS['port']);
 
 $inject = [
@@ -18,7 +19,6 @@ else if(!isset($_SESSION['userid'])) {
 
 if(!empty($_POST['reviewerID'])) {
         $reviewerID = $_POST['reviewerID'];
-}
 
     [$error,$success] = makeReviwer($reviwerName, $reviewerID); 
     
@@ -29,8 +29,6 @@ if(!empty($_POST['reviewerID'])) {
     } else {
         $inject['body'] = printReviewerForm($error);
     }
- else {
-    $inject['body'] = printReviewerForm("wow error");
 }
 
 printMain($inject);
@@ -43,8 +41,8 @@ function getTypeOpts() {
 
 function makeReviwer($eventID, $reviewerID) {
     $reviewerinfo = [
-        'eventid'=> $eventid,
-        'reviewerid'=> $reviewerid
+        'eventid'=> $eventID,
+        'reviewerid'=> $reviewerID
     ];
     [$error, $reviewerid] = createReviewer($reviewerinfo);
     if($error) {
@@ -59,7 +57,7 @@ function createReviewer($eventinfo) {
         $statement = $GLOBALS['conn']->prepare('INSERT INTO _reviewer (eventID, reviwerID) VALUES (?, ?)');
         $statement->bind_param('ssssssssssss', $reviewerinfo['eventID'], $reviewerinfo['reviewerID']);
         $statement->execute();
-        $eventid = $statement->insert_id;
+        $reviewerid = $statement->insert_id;
         return [NULL, $reviewerid];
     } catch(Exception $e) {
         return ['Failed to create reviewer. ' . $e, NULL];

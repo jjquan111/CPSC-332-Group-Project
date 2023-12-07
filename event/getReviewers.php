@@ -22,7 +22,7 @@ function printSingle($reviewer)
         return '<div class="col card border p-0 m-2">
                     <div class="card-body">
                             <a href="' . $GLOBALS['rootpath'] . '/reviewer/?reviewerid=' . $reviewer['reviewerID'] . '" class="btn btn-primary">View</a>
-                            <a href="' . $GLOBALS['rootpath'] . '/event/?eventid=' . $event['eventID'] . '" class="btn btn-primary">View</a>
+                            <a href="' . $GLOBALS['rootpath'] . '/event/?eventid=' . $reviewer['eventID'] . '" class="btn btn-primary">View</a>
                     </div>
                 </div>';
     }
@@ -31,7 +31,7 @@ function printSingle($reviewer)
 
 function printReviewers($reviewer)
 {
-    if (!empty($reviewer) {
+    if (!empty($reviewer)) {
 
         // these 2 lines are probably slow since it iterates throught the array 2 times
         $thereviewer = array_map('printSingle', $reviewer); // convert these posts into strings
