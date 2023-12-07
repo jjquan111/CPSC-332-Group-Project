@@ -34,15 +34,15 @@ USE cybermagicians;
 
 CREATE TABLE IF NOT EXISTS abstract (
   `abstractID` int(9) NOT NULL AUTO_INCREMENT,
-  `accepted` varchar(15) NOT NULL,
+  `accepted` boolean NOT NULL,
   `deadline` datetime NOT NULL,
   `abstractType` varchar(15) NOT NULL,
   `subject` varchar(30) NOT NULL,
   `time_stamp` datetime NOT NULL DEFAULT current_timestamp(),
   `presenterID` int(9) NOT NULL,
-  `mentorID` int(9) NOT NULL,
   `eventID` int(9) NOT NULL,
-  `reviewerID` int(9) NOT NULL,
+  `mentorID` int(9),
+  `reviewerID` int(9),
   PRIMARY KEY (`abstractID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS user (
   `Lname` varchar(30) NOT NULL,
   `institution` varchar(30) NOT NULL,
   `phoneNum` varchar(15) NOT NULL,
-  `type` varchar(30) NOT NULL,
+  `type` varchar(30),
   `password` varchar(30) NOT NULL,
   `timestamp` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`userID`)
@@ -162,13 +162,13 @@ CREATE TABLE IF NOT EXISTS _event (
   `description` text NOT NULL,
   `startTime` datetime NOT NULL DEFAULT current_timestamp(),
   `endTime` datetime NOT NULL DEFAULT current_timestamp(),
-  `capacity` int(6) NOT NULL,
+  `capacity` int(6),
   `eventType` varchar(30) NOT NULL,
   `time_stamp` datetime NOT NULL DEFAULT current_timestamp(),
-  `uniID` int(9) NOT NULL,
-  `venID` int(9) NOT NULL,
-  `speakerID` int(9) NOT NULL,
-  `sponsorID` int(9) NOT NULL,
+  `uniID` int(9),
+  `venID` int(9),
+  `speakerID` int(9),
+  `sponsorID` int(9),
   `organizerID` int(9) NOT NULL,
   PRIMARY KEY (`eventID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
