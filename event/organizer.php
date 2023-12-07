@@ -159,6 +159,7 @@ function getOrganizerForm($error = '') {
                 ifNotEmptyValueAttribute(issetor($_POST['eventType'])) .
             'required>
         <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="'.$GLOBALS['rootpath'] .'/event/createReviewer.php?eventid='. $_GET['eventid'] .'">Add a reviewer</a>
     </form>
 </div> ';
 }
