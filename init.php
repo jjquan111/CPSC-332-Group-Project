@@ -27,7 +27,7 @@ function runSQLFile($relativepath, $servername, $username, $password, $port, $da
 try {
   $res1 = runSQLFile('/project_tables.sql', $GLOBALS['servername'], $GLOBALS['username'],$GLOBALS['password'], $GLOBALS['port']);
   $res2 = runSQLFile('/insertalldata.sql', $GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['port'], $GLOBALS['database']);
-  //$res3 = runSQLFile('/createViews.sql', $GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['port'], $GLOBALS['database']);
+  $res3 = runSQLFile('/createViews.sql', $GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['port'], $GLOBALS['database']);
 
   $inject = [
     "body" => "<div class='container'>
@@ -35,6 +35,7 @@ try {
                 <ul>
                   <li>Create DB and Tables output: " . issetor($res1) . "</li>
                   <li>Create DB and Tables output: " . issetor($res2) . "</li>
+                  <li>Create DB and Tables output: " . issetor($res3) . "</li>
                 </ul>
               </div>",
     "title" => "Initialize the db success"
