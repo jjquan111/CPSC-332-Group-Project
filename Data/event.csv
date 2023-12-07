@@ -1,0 +1,4 @@
+eventID,eventName,published,description,startTime,endTime,capacity,eventType,uniID,venID,sponsorID,organizerID,speakerID
+1,Veribet,Fully-configurable,Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus.,6/24/2023,7/6/2023,5779,modular,3,4,4,5,1
+2,Flexidy,Compatible,Praesent id massa id nisl venenatis lacinia.,8/15/2023,5/27/2023,716,Cloned,2,4,3,5,2
+3,Stringtough,Mandatory,"Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim.",9/3/2023,3/17/2023,9133,Optional,2,2,1,4,10
