@@ -7,24 +7,20 @@ $inject = [
     "body" => ""
 ];
 
-if(!isset($_SESSION['userid'])) {
+if(!isset($_GET['eventid'])) {
+    
+}
+
+else if(!isset($_SESSION['userid'])) {
     header('Refresh: 1; url=' . $GLOBALS['rootpath'] . '/authentication');
     $inject['warning'] = '<span>Not logged in!</span>';
-} else if(!empty($_POST['reviewerName']) &&
-!empty($_POST['uniID']) &&
-!empty($_POST['venID'])) {
-    $reviewerName = $_POST['reviwerName'];
-    $uniID = $_POST['uniID'];
-    $venID = $_POST['venID'];
-    $ReviewerID = 1;
+} 
 
-    }if(!empty($_POST['reviewerID'])) {
+if(!empty($_POST['reviewerID'])) {
         $reviewerID = $_POST['reviewerID'];
-    }
+}
 
-    $reviewerID = $_SESSION['userid'];
-
-    [$error,$success] = makeReviwer($reviwerName, $uniID, $venID, $reviewerID); 
+    [$error,$success] = makeReviwer($reviwerName, $reviewerID); 
     
     if($success) {
         header('Refresh: 3;url='. $GLOBALS['rootpath'] . '/reviewer');
@@ -33,7 +29,7 @@ if(!isset($_SESSION['userid'])) {
     } else {
         $inject['body'] = printReviewerForm($error);
     }
-} else {
+ else {
     $inject['body'] = printReviewerForm("wow error");
 }
 
@@ -45,11 +41,9 @@ function getTypeOpts() {
     return [NULL, array("opt1","opt2")];
 }
 
-function makeReviwer($reviwerName, $uniID, $venID, $reviewerID) {
+function makeReviwer($eventID, $reviewerID) {
     $reviewerinfo = [
-        'reviwerName'=> $reviwerName,
-        'uniID'=> $uniID,
-        'venID'=> $venID,
+        'eventid'=> $eventid,
         'reviewerid'=> $reviewerid
     ];
     [$error, $reviewerid] = createReviewer($reviewerinfo);
@@ -62,8 +56,8 @@ function makeReviwer($reviwerName, $uniID, $venID, $reviewerID) {
 
 function createReviewer($eventinfo) {
     try {
-        $statement = $GLOBALS['conn']->prepare('INSERT INTO _reviewer (reviewerName, uniID, venID, reviwerID) VALUES (?, ?, ?, ?)');
-        $statement->bind_param('ssssssssssss', $reviewerinfo['reviewerName'],$reviewerinfo['uniID'],$reviewerinfo['venID'], $reviewerinfo['reviewerID']);
+        $statement = $GLOBALS['conn']->prepare('INSERT INTO _reviewer (eventID, reviwerID) VALUES (?, ?)');
+        $statement->bind_param('ssssssssssss', $reviewerinfo['eventID'], $reviewerinfo['reviewerID']);
         $statement->execute();
         $eventid = $statement->insert_id;
         return [NULL, $reviewerid];
@@ -77,30 +71,12 @@ function printReviewerForm($error = "") {
     return '<div class="container">  
                 <div class="alert-danger"><p>' . issetor($error) . '</p></div>
                 <h4>Create Employer</h4>  
-                <form action="create.php" method="post">
+                <form action="createReviewer.php" method="post">
                     <div class="mb-3">
                         <class="form-label">* Required Field</label>
                     </div>
                     <div class="mb-3">
-                        <label for="ReviewerName" class="form-label">Reviewer Name *</label>
-                        <input type="text" class="form-control" id="ReviewerName" name="ReviewerName"' .
-                            ifNotEmptyValueAttribute(issetor($_POST['ReviewerName'])) .
-                        'required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="uniID" class="form-label">University ID *</label>
-                        <input type="number" class="form-control" id="uniID" name="uniID"' .
-                            ifNotEmptyValueAttribute(issetor($_POST['uniID'])) .
-                        'required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="venID" class="form-label">Venue ID *</label>
-                        <input type="number" class="form-control" id="venID" name="venID"' .
-                            ifNotEmptyValueAttribute(issetor($_POST['venID'])) .
-                        'required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="speakerID" class="form-label">Reviewer ID</label>
+                        <label for="reviewerID" class="form-label">Reviewer ID</label>
                         <input type="number" class="form-control" id="reviewerID" name="reviewerID"' .
                             ifNotEmptyValueAttribute(issetor($_POST['reviewerID'])) .
                         '>
