@@ -100,7 +100,8 @@ function printMain($inject) {
           loginlinks() .
 
             '<li class="nav-item">
-              <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/views/">Events</a>
+              <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/events/">Events</a>
+
             </li>
             <li class="nav-item">
               <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/organizer/create.php">Create Event</a>
