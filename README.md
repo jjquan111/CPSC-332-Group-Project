@@ -3,6 +3,22 @@
 
 ### Instructor: Hokseng Hun
 
+#### Setup
+
+Open the Shell from the XAMPP control panel and run: mysql --user=root --password=""
+
+Within the mysql prompt, run GRANT ALL PRIVILEGES on *.* TO 'root'@'localhost'; FLUSH PRIVILEGES;
+
+We need to point apached to our folder, pick one of 2:
+1) Alias
+Open the Apache Config file (httpd.conf) from XAMPP, and add an alias to the path where this project's htdocs folder lives.
+
+Then, open the Apache Config file (httpd.conf), and add an alias to the directory.
+
+2) Direct Copy
+Find your default apache htdocs folder, make a copy of our htdocs into it so it's like C:/xampp/apache/htdocs/htdocs, then rename the folder to CPSC-332-Group-Project so it's like C:/xampp/apache/htdocs/CPSC-332-Group-Project
+
+
 ### Project Overview
 Students are required to work in groups to develop a database application project, specifically an online survey application for a client. The project involves building an ER Diagram, Relational Model, normalizing the database, building a physical model, populating the database with sample data, and creating a demo application in PHP and MySQL.
 

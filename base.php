@@ -104,10 +104,10 @@ function printMain($inject) {
 
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/organizer/create.php">Create Event</a>
+              <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/event/create.php">Create Event</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/init.php">Abstracts</a>
+              <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/abstracts/index.php">Abstracts</a>
             <li class="nav-item">
               <a class="nav-link" href="' . $GLOBALS['rootpath'] . '/init.php">Reset DB</a>
             </li
