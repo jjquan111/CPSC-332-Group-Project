@@ -32,6 +32,9 @@ function printEventDetails($eventdetails)
                     <p> address: ' . issetor($eventdetails['address']) . '</p>
                     <p> Speaker: ' . issetor($eventdetails['speakerName']) . '</p>
                     <p> Sponsor: ' . issetor($eventdetails['Fname']) . issetor($eventdetails['Lname']) . '</p>
+                    <a href="' . $GLOBALS['rootpath'] . '/event/createReviewer.php?eventid=' . $eventdetails['eventID'] . '" class="btn btn-primary">Create Reviewer</a>
+                    <a href="' . $GLOBALS['rootpath'] . '/event/createAbstract.php?eventid=' . $eventdetails['eventID'] . '" class="btn btn-primary">Create Abstract</a>
+
                                         </div>';
 }
 

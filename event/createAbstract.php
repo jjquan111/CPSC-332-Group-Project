@@ -147,7 +147,7 @@ function printAbstractForm($error = "") {
                     </div>
                     <div class="mb-3">
                         <label for="eventID" class="form-label">EventID *</label>
-                        <input type="number" class="form-control" id="eventID" name="eventID"' .
+                        <input type="number" value="'. $_GET['eventid'].'" class="form-control" id="eventID" name="eventID"' .
                             ifNotEmptyValueAttribute(issetor($_POST['eventID'])) .
                         'required>
                     </div>

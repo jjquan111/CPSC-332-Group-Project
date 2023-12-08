@@ -100,7 +100,7 @@ function printEventForm($error = "") {
     // set up create employer form
     return '<div class="container">  
                 <div class="alert-danger"><p>' . issetor($error) . '</p></div>
-                <h4>Create Employer</h4>  
+                <h4>Create Event</h4>  
                 <form action="create.php" method="post">
                     <div class="mb-3">
                         <class="form-label">* Required Field</label>
