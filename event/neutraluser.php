@@ -60,13 +60,13 @@ function getSignUpForm($error = '') {
 function isNeutralSigned($details) {
     try {
         $userID = $_SESSION['userid'];
-        $userID = $details['eventID'];
+        $eventID = $details['eventID'];
         $statement = $GLOBALS['conn']->prepare("SELECT * FROM attendee WHERE userID=? AND eventID=?");
         $statement->bind_param('ss', $userID, $eventID);
         $statement->execute();
         $res = $statement->get_result();
         $post = $res->fetch_assoc();
-        if(isset($post)) {
+        if(!isset($post)) {
             return [NULL, TRUE];
         } else {
             return ['No user found with those details.', FALSE];

@@ -215,7 +215,7 @@ ALTER TABLE `reviewer`
   ADD KEY `user` (`userID`),
   ADD KEY `event` (`eventID`);
 
-ALTER TABLE `atendee`
+ALTER TABLE `attendee`
   ADD KEY `user` (`userID`),
   ADD KEY `event` (`eventID`);
 
