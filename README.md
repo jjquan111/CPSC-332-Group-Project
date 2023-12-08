@@ -11,18 +11,12 @@ Within the mysql prompt, run GRANT ALL PRIVILEGES on *.* TO 'root'@'localhost'; 
 
 We need to point apached to our folder, pick one of 2:
 1) Alias
-Open the Apache Config file (httpd.conf) from XAMPP, and add an alias to the path where this project's cgi-bin folder lives.
+Open the Apache Config file (httpd.conf) from XAMPP, and add an alias to the path where this project's htdocs folder lives.
 
 Then, open the Apache Config file (httpd.conf), and add an alias to the directory.
 
 2) Direct Copy
-Find your default apache cgi-bin folder, make a copy into it so it's like
-
-Alias /CPSC-332-Group-Project "directory to htdocs in sample code (using forward slash)"
-<Directory "directory to htdocs in sample code (using forward slash)">
-    AllowOverride All
-    Require all granted
-</Directory>
+Find your default apache htdocs folder, make a copy of our htdocs into it so it's like C:/xampp/apache/htdocs/htdocs, then rename the folder to CPSC-332-Group-Project so it's like C:/xampp/apache/htdocs/CPSC-332-Group-Project
 
 
 ### Project Overview
