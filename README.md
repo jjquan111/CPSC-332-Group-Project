@@ -1,4 +1,12 @@
 # CPSC-332-Group-Project
+## Running this Repo
+1. Install XAMPP
+2. Navigate to your XAMPP root folder, most commonly C:/xampp
+3. Clone or extract this project into htdocs. Your result should look something like: C:/xampp/htdocs/CPSC-332-Group-Project
+4. Click start for both Apache and MySQL in the XAMPP control panel
+5. In your web browser navigate to localhost/CPSC-332-Group-Project (this url may change based on how you named the repo folder)
+6. Enjoy!
+   
 ## Fall 2023 Project Instructions
 
 ### Instructor: Hokseng Hun
