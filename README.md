@@ -3,10 +3,8 @@
 
 ### Instructor: Hokseng Hun
 
+#### Setup
 
-
-
-####Setup
 Open the Shell from the XAMPP control panel and run: mysql --user=root --password=""
 
 Within the mysql prompt, run GRANT ALL PRIVILEGES on *.* TO 'root'@'localhost'; FLUSH PRIVILEGES;
