@@ -77,12 +77,6 @@ CREATE TABLE IF NOT EXISTS reviewer (
   `eventID` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE IF NOT EXISTS attendee (
-  `time_stamp` datetime NOT NULL DEFAULT current_timestamp(),
-  `userID` int(9) NOT NULL,
-  `eventID` int(9) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 -- --------------------------------------------------------
 
 --
@@ -214,11 +208,6 @@ ALTER TABLE `mentor`
 ALTER TABLE `reviewer`
   ADD KEY `user` (`userID`),
   ADD KEY `event` (`eventID`);
-
-ALTER TABLE `atendee`
-  ADD KEY `user` (`userID`),
-  ADD KEY `event` (`eventID`);
-
 
 --
 -- Indexes for table `presenter`

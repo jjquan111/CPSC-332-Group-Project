@@ -87,8 +87,7 @@ $inject= [
 ];
 if(doesDBExist()) {
     $inject["body"]= "<html>
-    <h1>Welcome!</h1>
-    <h3>Check out the Events tab!</h3>
+    <h1>hello world!</h1>
     </html>";
 } else {
     $inject = printInitTableLink();
