@@ -2,7 +2,7 @@
 function getEventDetails($eventid)
 {
     try {
-        $stmt = $GLOBALS['conn']->prepare("SELECT * FROM EventView WHERE eventID = ?");
+        $stmt = $GLOBALS['conn']->prepare("SELECT * FROM EventDetailView WHERE eventID = ?");
         $stmt->bind_param("i", $eventid);
         $stmt->execute();
         $result = $stmt->get_result();

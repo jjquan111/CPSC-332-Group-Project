@@ -34,7 +34,7 @@ SELECT
 FROM _event AS E
     INNER JOIN university AS U ON E.uniID = U.uniID
     INNER JOIN venue AS V ON E.venID = V.venID
-    INNER JOIN keynote_speaker AS KS ON E.speakerID = KS.speakerName
+    INNER JOIN keynote_speaker AS KS ON E.speakerID = KS.speakerID
     INNER JOIN sponsor AS S ON E.sponsorID = S.sponsorID
     INNER JOIN user AS O ON E.organizerID = O.userID
 ORDER BY E.eventID DESC;
