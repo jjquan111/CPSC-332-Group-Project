@@ -22,10 +22,17 @@ function printEventDetails($eventdetails)
     // should add any fields I forgot to include, benefits etc
     return '<div class="col border p-4">
                     <h4>' . issetor($eventdetails['eventName']) . '</h4>
-                    <h5>' . issetor($eventdetails['capacity']) . '</h5>
                     <p>' . issetor($eventdetails['description']) . '</p>
-                    <p>' . var_export($eventdetails, TRUE) . '</p>
-                    </div>';
+                    <p> Start Time:' . date_format(date_create(issetor($post['startTime'])), 'm/d/Y') . '</p>
+                    <p> End Time:'. date_format(date_create(issetor($post['endTime'])), 'm/d/Y') .'</p>
+                    <p> Capacity:' . number_format(issetor($eventdetails['capacity'])) . '</p>
+                    <p> Event Type: ' . issetor($eventdetails['eventType']) . '</p>
+                    <p> University: ' . issetor($eventdetails['uniName']) . '</p>
+                    <p> Venue: ' . issetor($eventdetails['venueName']) . '</p>
+                    <p> address: ' . issetor($eventdetails['address']) . '</p>
+                    <p> Speaker: ' . issetor($eventdetails['speakerName']) . '</p>
+                    <p> Sponsor: ' . issetor($eventdetails['Fname']) . issetor($eventdetails['Lname']) . '</p>
+                                        </div>';
 }
 
 ?>
